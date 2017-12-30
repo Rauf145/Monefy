@@ -61,6 +61,7 @@ namespace Monefy_hw_
             else if (menu == 3 && choose == -1)
             {
                 DrawSettings("-+.txt", 12, 2);
+                Accrual();
             }
             else if (menu == 4 && choose == -1)
             {
@@ -320,6 +321,25 @@ namespace Monefy_hw_
             if (category != "" || amount <= Application.GetObj().Account[Application.GetObj().selectedAccount].Money)
             {
                 Application.GetObj().CreateOperation(category, amount, note, 1);
+            }
+        }
+        private void Accrual() //temperary
+        {
+            string category = "";
+            double amount = 0;
+            string note = "";
+            Console.SetCursorPosition(32, 4);
+            Console.Write(Text.getObj()[2] + ": ");
+            category = Console.ReadLine();
+            Console.SetCursorPosition(32, 6);
+            Console.Write(Text.getObj()[1] + ": ");
+            Double.TryParse(Console.ReadLine(), out amount);
+            Console.SetCursorPosition(32, 8);
+            Console.Write(Text.getObj()[12] + ": ");
+            note = Console.ReadLine();
+            if (category != "")
+            {
+                Application.GetObj().CreateOperation(category, amount, note, 0);
             }
         }
     }
